@@ -12,7 +12,7 @@ import math
 ```
 
 ```python
-# Customized funstions (find file in .utils folder)
+# Customized functions (find file in .utils folder)
 import Setup_GEORIO as stp
 ```
 
