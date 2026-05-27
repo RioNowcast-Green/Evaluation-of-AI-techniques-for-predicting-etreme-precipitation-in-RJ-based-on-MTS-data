@@ -4072,8 +4072,8 @@ dataset_amos.describe(include='all').T
 
 
 ```python
-# Exportar dados
-Arquivo = 'SaoCristovao.csv'
+# Export dataset (stage 1: initial preprocessing)
+Arquivo = 'SaoCristovao_stage1.csv'
 dataset_amos.to_csv(Arquivo)
 
 ```
