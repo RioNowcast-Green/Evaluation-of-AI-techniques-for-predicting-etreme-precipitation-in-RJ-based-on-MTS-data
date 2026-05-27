@@ -2306,7 +2306,7 @@ stats
 </table>
 
 
-### 2.3.1 Treatmet for error/non-valid values
+### 2.3.1 Handling error/non-valid values
 
 Note: Other datasets of GeoRio may present values inputted as '-9999.000000' for non-valid annotations.
 In these cases, the values must be replaced with NaN for further treatment (data imputation):
