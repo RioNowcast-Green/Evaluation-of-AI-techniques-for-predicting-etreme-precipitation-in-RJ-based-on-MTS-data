@@ -47,11 +47,6 @@ HBV_datas_str = [
 ]
 
 ### Verificar uso
-def detectar_encoding(arquivo):
-    with open(arquivo, 'rb') as f:
-        resultado = chardet.detect(f.read())
-    return resultado['encoding']
-
 def date_par(x, f='%Y/%m/%d %H%M %Z', tz='UTC', day_first=False): 
     if ':' in x:
         dt = parser.parse(x, dayfirst=day_first)
@@ -102,7 +97,6 @@ def HBV_corrig(data_col):
 
 #########################
 
-
 def concat_dfs_GeoRio(lista_arq, skip=0, sep='\s+', dec='.', verb=False, colunas=None, dados_loc=None):
     '''
     Concatenates GeoRio files ia a single DataFrame with standard variables names
@@ -148,27 +142,6 @@ def concat_dfs_GeoRio(lista_arq, skip=0, sep='\s+', dec='.', verb=False, colunas
         df = pd.concat([df, data], ignore_index=True)
 
     return df
-
-### Verificar uso
-def Tratar_data_hora(df, dt_col, hr_col, hr_format='%H%M %Z'): #, dt_format):
-    
-    '''
-    Used to handle date/hour information.
-    '''
-    
-    df[dt_col] = df[dt_col].apply(lambda x: parser.parse(x).date()) 
-    df[hr_col] = df[hr_col].apply(lambda x: parser.parse(x).time() if ':' in x else datetime.strptime(x,hr_format).time()) 
-    
-    Dt_Hr = df.apply(lambda lin: datetime.combine(lin[dt_col], lin[hr_col]), axis = 1)
-    df.insert(loc=2, column='Dt_Hr', value=Dt_Hr)
-    
-    ts = df.apply(lambda lin: datetime.timestamp(lin['Dt_Hr']), axis = 1)
-    df.insert(loc=3, column='timestamp', value=ts)
-    
-    df.drop(columns=[dt_col, hr_col], inplace=True)
-    
-    return df
-
 
 #########################
 
@@ -245,75 +218,6 @@ def difer_time(x, l=1):
 
 
 #########################
-# Transferir para outro arquivo?
-seno, cos = math.sin, math.cos
-
-def ang_dif(a, b, graus=True):
-    '''
-    Returns the difference between to angles.
-    a, b: angles, in degrees
-    'graus': set to 'True' (default) to inputs and outputs in degrees, or 'False' for radians.
-    '''
-    # a, b e a-b em graus (default) ou radianos (graus=False)
-    # Retorna o menor ângula
-    if graus: #converte para rad para o cálculo
-        a = math.radians(a)
-        b = math.radians(b)
-    dif_cos = cos(a)*cos(b)+seno(a)*seno(b)
-    dif_ang = math.acos(round(dif_cos,15))
-
-    if graus: dif_ang = math.degrees(dif_ang)
-    
-    return dif_ang
-
-def difer_ang(x, lag=1, graus=True, verb=False):
-    '''
-    Computes angle differences of elements in an array.
-    '''
-    X = list(x)
-    dif_ang=[]
-    for t in range(len(X)):
-        if t < lag: dif_ang.append(np.nan)               
-        else: 
-            a, b = X[t], X[t-lag]
-            if verb: print(a, b)
-            dif_ab = ang_dif(a,b,graus)
-            dif_ang.append(dif_ab)
-            if verb: print(dif_ab)
-    return dif_ang 
-
-## Angulo entre vetores
-
-def ang_vets(coords, graus=True):
-    '''
-    Returns the smallest angle between to vectors.
-    
-    coords: = array of coordinates in form [x1, y1, x2, y2] 
-    graus: 'True' (default) for output in degrees; 'False' for radians.
-    '''
-    x1, y1, x2, y2 = coords
-    dif_cos = (x1*x2+y1*y2)/( math.sqrt(x1**2+y1**2)*math.sqrt(x2**2+y2**2))
-    dif_ang = math.acos(round(dif_cos,15))
-
-    if graus: dif_ang = math.degrees(dif_ang)
-    
-    return dif_ang
-
-def difer_ang_vets(X, Y, lag=1, graus=True, verb=False):
-    X, Y = list(x), list(y)
-    dif=[]
-    for t in range(len(X)):
-        if t < lag: dif.append(np.nan)               
-        else: 
-            coords = [X[t], Y[t], X[t-lag], Y[t-lag]]
-            if verb: print(coords)
-            dif_v = ang_vets(coords, graus)
-            dif.append(dif_v)
-            if verb: print(dif_v)
-    return dif_x
-
-
-###############
 
 def Unicos (df):
     '''
@@ -330,6 +234,9 @@ def cont_NA(df):
     '''
     for col in df.columns:
         print(col, df[col].isna().sum())
+
+#########################
+
 
 def plot_periodo(df, col_dado, col_tempo, inicio=None, fim=None):
     '''
