@@ -1,3 +1,11 @@
+# READ-ME
+The process presented bellow was used to transform data of all GeoRio Meteorological Stations.
+Here, it can be seen the results exemplified for one of them (the station of Sao Cristovao).
+
+Since the problems found in data (see section 2) are specific for each dataset, the decision-making process is 
+individualized, so that the pipeline cannot be completely automated.
+Though, the process is similar for all stations, so it is not necessary to show a separate file for each one.
+
 # Setup
 
 ```python
