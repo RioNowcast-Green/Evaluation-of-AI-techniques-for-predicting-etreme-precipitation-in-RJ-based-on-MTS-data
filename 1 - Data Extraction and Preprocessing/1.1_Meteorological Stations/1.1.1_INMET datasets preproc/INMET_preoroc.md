@@ -21,8 +21,8 @@ from dateutil import parser
 ```
 
 ```python
-# Customized functions
-import Setup_INMET as stp 
+# Customized functions 
+import Setup_Met_Stations as stp # file in ..\utils
 ```
 
 # 1. Import data
