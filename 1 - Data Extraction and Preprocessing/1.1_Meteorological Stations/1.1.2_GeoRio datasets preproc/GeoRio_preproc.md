@@ -20,8 +20,8 @@ import math
 ```
 
 ```python
-# Customized functions (find file in .utils folder)
-import Setup_GEORIO as stp
+# Customized functions (find file in ..\utils folder)
+import Setup_Met_Stations as stp
 ```
 
 # 1. Import data
