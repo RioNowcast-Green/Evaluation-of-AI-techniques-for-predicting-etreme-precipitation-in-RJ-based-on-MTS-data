@@ -104,7 +104,7 @@ The experimental workflow can be summarized as follows:
 2. Outlier removal and source-specific corrections  
 3. Temporal and spatial data integration  
 4. Multivariate missing data imputation  
-5. Feature engineering and feature selection  
+5. Feature engineering and feature importance ealuation  
 6. Sliding window generation (MTS format)  
 7. Dataset balancing  
 8. Model training and validation  
@@ -116,7 +116,19 @@ A detailed pipeline description is available in `docs/pipeline.md`.
 ---
 
 ## 📂 Repository Structure
-(Coming soon...)
+
+```text
+├── 1 - Data Extraction and Preprocessing/      
+    ├── 1.1 - Meteorological Stations           
+            ├── 1.1.1 - INMET Stations 
+            ├── 1.1.2 - GEORIO Stations
+    ├── 1.2 - Meteorological Buoys
+    ├── 1.3 - Radiosoundings
+├── 2 - Data Integration, Data Imputation and Feature Engineering
+├── 3 - Feature Importance Evaluation
+
+(Coming soon: Models implematation, experiments and results)
+```
 <!-- 
 ```text
 ├── data/           # Metadata and intermediate datasets (raw data not versioned)
