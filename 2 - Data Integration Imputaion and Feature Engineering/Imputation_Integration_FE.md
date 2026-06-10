@@ -20,11 +20,9 @@ from geopy.distance import geodesic
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import KNNImputer
 import tensorflow as tf
-```
 
-```python
-# Customized functions (find file in folder '..\utils')
-import Setup_FE as stp
+# Customized functions (be sure that 'utils' folder is correctly placed in your project)
+from .utils import Setup_FE as stp 
 ```
 
 # 1. Import data

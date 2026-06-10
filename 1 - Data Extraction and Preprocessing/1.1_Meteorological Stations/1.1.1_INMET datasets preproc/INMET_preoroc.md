@@ -1,4 +1,4 @@
-# READ-ME
+# Preprocess data from INMET Meteorological Stations
 The process presented bellow was used to transform data of all INMET Meteorological Stations.
 Here, it can be seen the results exemplified for one of them (the station of Mangaratiba).
 
@@ -18,11 +18,9 @@ import seaborn as sns
 import glob
 import math
 from dateutil import parser
-```
 
-```python
 # Customized functions 
-import Setup_Met_Stations as stp # file in ..\utils
+from ...utils import Setup_Met_Stations as stp # be sure that folder 'utils' is corrctly placed in your project
 ```
 
 # 1. Import data

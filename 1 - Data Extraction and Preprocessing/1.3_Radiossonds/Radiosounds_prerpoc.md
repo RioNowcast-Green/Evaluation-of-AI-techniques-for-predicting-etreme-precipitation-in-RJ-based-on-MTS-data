@@ -1,3 +1,5 @@
+# Preprocess data from Radiosoundings
+
 # Setup
 
 ```python
@@ -12,8 +14,9 @@ import os
 
 ```python
 # Customized functions (find files in ..\utils folder)
-import Setup_RSoundings as stp
-from Setup_Met_Stations import Unicos, difer_time
+
+from ...utils import Setup_RSoundings as stp # be sure that folder 'utils' is corrctly placed in your project
+from ...utils.Setup_Met_Stations import Unicos, difer_time
 ```
 
 # 1. Import Data

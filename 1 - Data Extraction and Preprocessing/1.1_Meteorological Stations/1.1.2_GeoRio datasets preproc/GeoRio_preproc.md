@@ -1,4 +1,4 @@
-# READ-ME
+# Preprocess data from GeoRio Meteorological Stations
 The process presented bellow was used to transform data of all GeoRio Meteorological Stations.
 Here, it can be seen the results exemplified for one of them (the station of Sao Cristovao).
 
@@ -17,11 +17,8 @@ from matplotlib import pyplot as plt
 import seaborn as sns
 import glob
 import math
-```
 
-```python
-# Customized functions (find file in ..\utils folder)
-import Setup_Met_Stations as stp
+from ...utils import Setup_Met_Stations as stp # be sure that folder 'utils' is corrctly placed in your project
 ```
 
 # 1. Import data
