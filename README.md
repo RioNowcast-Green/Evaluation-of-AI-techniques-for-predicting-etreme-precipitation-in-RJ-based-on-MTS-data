@@ -128,16 +128,16 @@ A detailed pipeline description is available in `docs/pipeline.md`.
 ├── 2 - Data Integration, Data Imputation and Feature Engineering
 ├── 3 - Feature Importance Evaluation
 ├── 4 - Feature Selection, Tensor Generation and Data Balancing
+├── 5 - Models implematation, experiments and results
 
-(Coming soon: Models implematation, experiments and results)
+(Coming soon: 
+  - Result analysis procedures (metrics calculation)
+  - Experiments for Anomaly Detection, with Auto Encoders)
 ```
-<!-- 
-```text
-├── data/           # Metadata and intermediate datasets (raw data not versioned)
-├── src/            # Source code (data pipeline, models, training, evaluation)
-├── experiments/    # Experimental configurations (SC1–SC5)
-├── results/        # Aggregated metrics, tables, and figures
-├── notebooks/      # Exploratory analysis and visualizations
-├── scripts/        # Executable pipeline scripts
-└── docs/           # Technical and scientific documentation
--->
+NOTE: For simplicity, codes are published as Markdown (.md) files, wich can be easyly converted to Jupyter Notebooks executable files using [`jupytex`](https://jupytext.org/) lib.
+
+```code
+pip install jupytext
+
+jupytext --to notebook my_markdown_file.md
+```
