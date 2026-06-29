@@ -134,7 +134,7 @@ A detailed pipeline description is available in `docs/pipeline.md`.
   - Result analysis procedures (metrics calculation)
   - Experiments for Anomaly Detection, with Auto Encoders)
 ```
-NOTE: For simplicity, codes are published as Markdown (.md) files, wich can be easyly converted to Jupyter Notebooks executable files using [`jupytex`](https://jupytext.org/) lib.
+NOTE: To simplify, codes are published as Markdown (.md) files, wich can be easily converted to Jupyter Notebooks executable files using [`jupytex`](https://jupytext.org/) lib.
 
 ```code
 pip install jupytext
