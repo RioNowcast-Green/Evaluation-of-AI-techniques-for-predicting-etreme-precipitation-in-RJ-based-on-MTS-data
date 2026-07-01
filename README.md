@@ -130,8 +130,7 @@ A detailed pipeline description is available in `docs/pipeline.md`.
 ├── 4 - Feature Selection, Tensor Generation and Data Balancing
 ├── 5 - Models implematation, experiments and results
 
-(Coming soon: 
-  - Result analysis procedures (metrics calculation)
+(Coming soon:
   - Experiments for Anomaly Detection, with Auto Encoders)
 ```
 NOTE: To simplify, codes are published as Markdown (.md) files, wich can be easily converted to Jupyter Notebooks executable files using [`jupytex`](https://jupytext.org/) lib.

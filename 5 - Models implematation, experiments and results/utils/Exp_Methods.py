@@ -291,3 +291,57 @@ def tensor_flat(T, tempo_1o=True):
     sh = T.shape
     T = tf.reshape(T, (sh[0],sh[1]*sh[2]))
     return T
+
+#####################################################################
+# Metrics and filters (results evaluation)
+#####################################################################
+
+def Bias(y_true, y_pred):
+    try : dif = tf.convert_to_tensor(y_true - y_pred, dtype=tf.float32)
+    except: dif = tf.convert_to_tensor(y_true - y_pred)  
+    return tf.reduce_mean(dif).numpy()
+
+def mae(Yr, Yp): return tf.keras.metrics.MeanAbsoluteError()(Yr, Yp).numpy()  
+def mse(Yr, Yp): return tf.keras.metrics.MeanSquaredError()(Yr, Yp).numpy()
+
+def mask_Y(Y, li=None, ls=None, seq=False, reduzir=False):
+    '''
+    Y na forma amostras X (tempo) X 1 (atribiuto único)
+    Filtra Ya (e Yb) para os casos em que Ya >= lim 
+    '''
+    inf = float('inf')
+    if li is None: li = -inf
+    if ls is None: ls = inf
+
+    if seq: # seq2seq
+        ci =Y[:,-1,:,0]>=li 
+        cf =Y[:,-1,:,0]<ls 
+    else: # seq2vector
+        ci =Y[...,0]>=li 
+        cf =Y[...,0]<ls
+
+    if reduzir:
+        ci = tf.reduce_any(ci, axis=1)
+        cf =  tf.reduce_any(cf, axis=1)
+
+    return ci&cf
+
+def filtrar_tensores(Tensores, li=None, ls=None,  i = 0, alv= 0, seq=False, reduzir=False):
+    '''
+    Tensores: lista de tensores para filtrar
+    i: posição do tensor para a máscara de filtro
+    lim: limiar de fitro
+    reduzir (bool): True, para filtrar a amostra inteira, se qualquer valor atende o filtro
+                    False. para filtrar cada valor individualmente
+
+    Retorna lista de Tensores filtrada para máscara gerada para Tensores[i], para valores maiores que lim
+    
+    Nota: Para filtrar tensores 'X' baseados em limites de 'Y', usar reduzir = True
+    '''
+    mask = mask_Y(Tensores[i][...,alv:alv+1], li, ls, seq, reduzir)
+    Filtro = []
+    for tensor in Tensores:
+        if seq and not reduzir: Filtro.append(tensor[:,-1][mask])
+        else: Filtro.append(tensor[mask])
+    
+    return Filtro
